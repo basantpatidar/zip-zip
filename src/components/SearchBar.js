@@ -5,9 +5,13 @@ class SearchBar extends React.Component {
     
     onFormSubmit = event => {
         event.preventDefault();
+        if(this.state.term === ""){
+            return;
+        }
         
         //Invoking callback with search term when form is submited
         this.props.onEnter(this.state.term);
+
         
     };
     
@@ -16,7 +20,8 @@ class SearchBar extends React.Component {
             <div className="container">
             <form onSubmit = {this.onFormSubmit}>
                 <label>Search Radius</label>
-                <input type="number" placeholder= "Enter Zip-code" onChange={e => this.setState({term: e.target.value}, console.log(this.state.term)) }/>
+                <input type="number" placeholder= "Enter Zip-code" onChange={e => this.setState({term: e.target.value}) }/>
+                <button>Submit</button>
             </form>
             </div>
         );
