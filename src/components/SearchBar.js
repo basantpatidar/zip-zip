@@ -10,12 +10,20 @@ class SearchBar extends React.Component {
     event.preventDefault();
 
     //Invoking callback with search term when form is submited
-    // let searchBarState = this.state;
-    this.props.onEnter(this.state.zipcode, this.state.valueType);
+    console.log("Search Type on Searchbar --", this.state.valueType);
+    if (this.state.valueType === "zipcode") {
+      this.props.onEnter(this.state.zipcode, this.state.valueType);
+    } else if (this.state.valueType === "city") {
+      this.props.onEnter(this.state.city, this.state.valueType);
+    }
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    //using bracket notation to fatch name of input tag.
+    this.setState({
+      [event.target.name]: event.target.value,
+      valueType: event.target.name
+    });
   };
 
   render() {
@@ -50,7 +58,7 @@ class SearchBar extends React.Component {
             </div>
           </div>
 
-          {/* <div className="card border-primary mb-3">
+          <div className="card border-primary mb-3">
             <div className="card-header">
               <div className="card-body text-primary">
                 <div className="input-group mb-3">
@@ -75,7 +83,7 @@ class SearchBar extends React.Component {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
           {/*
                 <div className="card border-primary mb-3">
                 <div className="card-header">
