@@ -3,7 +3,13 @@ import React from "react";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { zipcode: "", valueType: "", city: "" };
+    this.state = {
+      zipcode: "",
+      valueType: "",
+      city: "",
+      zipOne: "",
+      zipTwo: ""
+    };
   }
 
   onFormSubmit = event => {
@@ -15,6 +21,12 @@ class SearchBar extends React.Component {
       this.props.onEnter(this.state.zipcode, this.state.valueType);
     } else if (this.state.valueType === "city") {
       this.props.onEnter(this.state.city, this.state.valueType);
+    } else if (this.state.valueType === "zipTwo") {
+      this.props.onEnter(
+        this.state.zipOne,
+        this.state.valueType,
+        this.state.zipTwo
+      );
     }
   };
 
@@ -84,37 +96,68 @@ class SearchBar extends React.Component {
               </div>
             </div>
           </div>
-          {/*
-                <div className="card border-primary mb-3">
-                <div className="card-header">
-                <div className="card-body text-primary">
+
+          <div className="card border-primary mb-3">
+            <div className="card-header">
+              <div className="card-body text-primary">
                 <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon3">First Zip Code</span>
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon3">
+                      Search Distance between Two Zip codes
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    className={`form-control`}
+                    placeholder="Zip One"
+                    name="zipOne"
+                    value={this.state.zipOne}
+                    onChange={this.handleChange}
+                  />
+                  <input
+                    type="text"
+                    className={`form-control`}
+                    placeholder="Zip Two"
+                    name="zipTwo"
+                    value={this.state.ZipTwo}
+                    onChange={this.handleChange}
+                  />
+                  <input
+                    type="submit"
+                    className="btn btn-secondary"
+                    value="submit"
+                  ></input>
                 </div>
-                <input type="number" className={`form-control`} placeholder= "Enter Zip-code" onChange={e => this.setState({term: e.target.value}) }/>
-                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <div className="card border-primary mb-3">
+            <div className="card-header">
+              <div className="card-body text-primary">
                 <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon3">Second Zip Code</span>
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon3">
+                      Search by City
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    className={`form-control`}
+                    placeholder="Enter City name"
+                    name="city"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                  />
+                  <input
+                    type="submit"
+                    className="btn btn-secondary"
+                    value="submit"
+                  ></input>
                 </div>
-                <input type="number" className={`form-control`} placeholder= "Enter Zip-code" onChange={e => this.setState({term: e.target.value}) }/>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div className="card border-primary mb-3">
-                <div className="card-header">
-                <div className="card-body text-primary">
-                <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon3">Search by ZIP code</span>
-                </div>
-                <input type="number" className={`form-control`} placeholder= "Enter Zip-code" onChange={e => this.setState({term: e.target.value}) }/>
-                </div>
-                </div>
-                </div>
-                </div> */}
+              </div>
+            </div>
+          </div> */}
         </form>
       </div>
     );
