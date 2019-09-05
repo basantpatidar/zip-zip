@@ -8,7 +8,9 @@ class SearchBar extends React.Component {
       valueType: "",
       city: "",
       zipOne: "",
-      zipTwo: ""
+      zipTwo: "",
+      zipRadius: "",
+      radius: ""
     };
   }
 
@@ -26,6 +28,12 @@ class SearchBar extends React.Component {
         this.state.zipOne,
         this.state.valueType,
         this.state.zipTwo
+      );
+    } else if (this.state.valueType === "radius") {
+      this.props.onEnter(
+        this.state.zipRadius,
+        this.state.valueType,
+        this.state.radius
       );
     }
   };
@@ -132,21 +140,29 @@ class SearchBar extends React.Component {
             </div>
           </div>
 
-          {/* <div className="card border-primary mb-3">
+          <div className="card border-primary mb-3">
             <div className="card-header">
               <div className="card-body text-primary">
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span className="input-group-text" id="basic-addon3">
-                      Search by City
+                      Search Zip codes within Radius
                     </span>
                   </div>
                   <input
                     type="text"
                     className={`form-control`}
-                    placeholder="Enter City name"
-                    name="city"
-                    value={this.state.city}
+                    placeholder="Enter ZIP code"
+                    name="zipRadius"
+                    value={this.state.zipRadius}
+                    onChange={this.handleChange}
+                  />
+                  <input
+                    type="text"
+                    className={`form-control`}
+                    placeholder="Enter Radius"
+                    name="radius"
+                    value={this.state.radius}
                     onChange={this.handleChange}
                   />
                   <input
@@ -157,7 +173,7 @@ class SearchBar extends React.Component {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </form>
       </div>
     );
