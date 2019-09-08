@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, CardTitle, ListGroup, ListGroupItem } from "reactstrap";
 // import styles from "./ZipDetail.module.css";
 
 class CityInfo extends React.Component {
@@ -9,20 +10,25 @@ class CityInfo extends React.Component {
 
       return;
     }
+    let counter = 0;
     return response.map(city => {
       return (
         <div>
-          <div className="card border-primary mb-3">
-            <div className="card-header">
-              <div className="card-body text-primary">
-                <label>Zip-code : {city.zip}</label>
-                <br />
-                <label>City : {city.city}</label>
-                <br />
-                <label>State : {city.state}</label>
-              </div>
-            </div>
-          </div>
+          <Card body outline color="primary">
+            <CardTitle>Result {(counter += 1)}</CardTitle>
+            <ListGroup className="list-group">
+              <ListGroupItem className="list-group-item">
+                Zip-code : {city.zip}
+              </ListGroupItem>
+              <ListGroupItem className="list-group-item">
+                City : {city.city}
+              </ListGroupItem>
+              <ListGroupItem className="list-group-item">
+                State : {city.state}
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
+          <br></br>
         </div>
       );
     });
